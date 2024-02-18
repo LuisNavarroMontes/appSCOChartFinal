@@ -1,0 +1,13 @@
+.disps_detalle{
+    display:flex;
+    flex-direction:row;
+}
+.detalle{
+    display:flex;
+    flex-direction:column;
+}
+.extra{
+    display:flex;
+    flex-direction:column;
+}
+

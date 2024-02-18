@@ -1,3 +1,47 @@
-<div class="chart-container">
-  <canvas  id="MyChart" >{{ chart }}</canvas>
+<div class="app">
+  <div class="chart-container">
+    <canvas  id="MyChart" >{{ chart }}</canvas>
+  </div>
+  <div class="disps_detalle">
+    <div>
+      <select (change)="onTableSizeChange($event)">
+        <option *ngFor="let size of paginacion">
+          {{size}}
+        </option>
+      </select>
+    </div>
+  
+    <div class=" tablaMasPaginacionIot">
+      <table class="table">
+        <thead>
+          <th>
+            ID
+          </th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let dispositivo of dispositivos_iot_mostrandose | paginate:{
+              id: 'Dispositivo',
+              itemsPerPage: table_size,
+              currentPage: page,
+              totalItems:count_dispositivos}; let i = index ">
+             <td><button style="width: 150px; height: 50px;" (click)="dispositivoClick(dispositivo)">{{dispositivo.name}}</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <div>
+        <pagination-controls id="Dispositivo" previousLabel="Prev" nextLabel="Next"
+          (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
+      </div>
+    </div>
+    <div class="detalle">
+      <div class="extra" *ngIf="this.mostrar">
+        <label>ID: {{this.dispositivo_iot.id}}</label>
+        <label>Nombre: {{this.dispositivo_iot.name}}</label>
+        <label>Estado: {{this.dispositivo_iot.status}}</label>
+        <label>Latitud: {{this.dispositivo_iot.lat}}</label>
+        <label>Longitud: {{this.dispositivo_iot.lon}}</label>
+      </div>
+    </div>
+  </div>
 </div>

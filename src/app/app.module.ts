@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
+import {NgxPaginationModule} from 'ngx-pagination';
 import { AppComponent } from './app.component';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { HttpClientModule } from '@angular/common/http';
 
-const config: SocketIoConfig = { url: 'https://receptor-92fkz82us-luis-projects-b8acb995.vercel.app/:4000', options: {
-    withCredentials: false,
-} };
+const config: SocketIoConfig = { url: 'http://roundhouse.proxy.rlwy.net:27151', options: {}};
 @NgModule({
   declarations: [
     AppComponent
@@ -14,7 +14,9 @@ const config: SocketIoConfig = { url: 'https://receptor-92fkz82us-luis-projects-
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SocketIoModule.forRoot(config)
+    SocketIoModule.forRoot(config),
+    NgxPaginationModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
